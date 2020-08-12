@@ -2,7 +2,7 @@
 .packages = c("tidyverse","lubridate","sf","biscale","magrittr","rvest","readxl",
                "maps","ggiraph","RColorBrewer","leaflet","plotly","geojsonio","cowplot",
                "flexdashboard","tibbletime","leaflet.extras","EpiEstim","pals","htmltools",
-              "XML","plyr")
+              "XML","plyr","htmlwidgets")
 
 # Install CRAN packages (if not already installed)
 .inst <- .packages %in% installed.packages()
@@ -155,8 +155,12 @@ map5 <- htmlwidgets::prependContent(
   ")
 )
 
+file = "index.html"
+
+saveWidget(map5, file = "index.html")
 
 
+mapshot(map5, url = paste0(getwd(), "/index.html"))
 
 write_xlsx(recife_bairros,"data/suplement_inputs/recife_bairros.xlsx") # couldn't write geommetry column (MULTIPOLYGON) to file
 
